@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import db from "../utils/db";
-
-// import './EditForm.css';
 import { deleteDoc, doc, getDoc, updateDoc } from "firebase/firestore";
+import '../App.css';
 
 export const EditForm = () => {
     const { id } = useParams();
@@ -17,8 +16,7 @@ export const EditForm = () => {
         phoneNumber: ''
     });
 
-
-    // Load data from Firestore
+   
     useEffect(() => {
         const fetchContact = async () => {
             const docRef = doc(db, "contacts", id);
@@ -31,7 +29,7 @@ export const EditForm = () => {
         fetchContact();
     }, [id]);
 
-    // Check if contact data is provided
+  
     useEffect(() => {
         if (contact) {
             setFormData({
@@ -53,22 +51,28 @@ export const EditForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Update the contact in Firestore
+      
         const docRef = doc(db, "contacts", id);
         await updateDoc(docRef, formData);
-        // Redirect to the contact page
+       
         navigate(`/contact/${id}`);
     };
 
     const handleDelete = async () => {
-        const docRef = doc(db, "contacts", id);
-        await deleteDoc(docRef);
-        navigate(`/`);
+        if (window.confirm('Are you sure you want to delete this contact?')) {
+            const docRef = doc(db, "contacts", id);
+            await deleteDoc(docRef);
+            navigate(`/`);
+        }
+    };
+
+    const handleCancel = () => {
+        navigate(`/contact/${id}`);
     };
 
     return (
         <div className="edit-form-container">
-            {/* <Link to={`./contact/${contact.id}`} className="back-link">← Back to Contacts</Link> */}
+            <Link to="/" className="back-link">← Back to All Contacts</Link>
             <div className="edit-form-card">
                 <h2>Edit Contact Information</h2>
                 <form onSubmit={handleSubmit} className="edit-form">
@@ -116,9 +120,18 @@ export const EditForm = () => {
                         />
                     </div>
 
-                    <div className="action-buttons-container">
-                        <button type="submit" className="submit-button">Update Contact</button>
-                        <button type="button" className="delete-button" onClick={handleDelete}>Delete Contact</button>
+                      <div className="edit-form-actions">
+                        <div className="primary-actions">
+                            <button type="submit" className="submit-button">Update Contact</button>
+                            <button type="button" className="cancel-button" onClick={handleCancel}>
+                                Cancel
+                            </button>
+                        </div>
+                        <div className="danger-actions">
+                            <button type="button" className="delete-button" onClick={handleDelete}>
+                                Delete Contact
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -126,4 +139,4 @@ export const EditForm = () => {
     );
 };
 
-export default EditForm;   
+export default EditForm;

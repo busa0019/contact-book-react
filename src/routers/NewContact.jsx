@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import db from "../utils/db";
 import { addDoc, collection } from "firebase/firestore";
-
+import '../App.css';
 
 
 export const NewContact = () => {
@@ -27,10 +27,10 @@ export const NewContact = () => {
         e.preventDefault();
 
         try {
-            // Add new contact to Firestore
+           
             const docRef = await addDoc(collection(db, "contacts"), formData);
 
-            // Redirect to the new contact page
+          
             navigate(`/contact/${docRef.id}`);
         } catch (error) {
             console.error("Error adding contact: ", error);
@@ -39,6 +39,8 @@ export const NewContact = () => {
 
     return (
         <div className="new-contact-container">
+            <Link to="/" className="back-link">← Back to All Contacts</Link>
+
             <div className="new-contact-card">
                 <h2>Add New Contact</h2>
                 <form onSubmit={handleSubmit} className="new-contact-form">

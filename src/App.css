@@ -380,6 +380,213 @@
   flex: 1;
   margin-top: 0;
 }
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.contact-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.contact-card li {
+  animation: slideIn 0.3s ease-out;
+}
+
+.contact-card li:nth-child(1) { animation-delay: 0.1s; }
+.contact-card li:nth-child(2) { animation-delay: 0.2s; }
+.contact-card li:nth-child(3) { animation-delay: 0.3s; }
+.contact-card li:nth-child(4) { animation-delay: 0.4s; }
+.contact-card li:nth-child(5) { animation-delay: 0.5s; }
+
+/* Hover effects for better interactivity */
+.contact-card li {
+  transition: all 0.3s ease;
+}
+
+.contact-card li:hover {
+  transform: translateX(5px);
+  background-color: #f8f9fa;
+}
+
+.no-contacts-found {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  padding: 40px 20px;
+  margin: 20px 0;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+  font-size: 18px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.contact-stats {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 12px;
+  color: white;
+}
+
+.welcome-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.welcome-section p {
+  opacity: 0.9;
+  font-size: 1em;
+  line-height: 1.5;
+}
+.cancel-button {
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.cancel-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  align-self: flex-start;
+}
+
+.back-link:hover {
+  background-color: #545b62;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.loading h2 {
+  margin-bottom: 15px;
+  color: #495057;
+}
+
+.loading p {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.edit-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.primary-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.primary-actions .submit-button,
+.primary-actions .cancel-button {
+  flex: 1;
+  margin-top: 0;
+}
+
+.danger-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.danger-actions .delete-button {
+  width: 100%;
+  margin-top: 0;
+}
+
+
+.new-contact-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.new-contact-actions .submit-button,
+.new-contact-actions .cancel-button {
+  flex: 1;
+  margin-top: 0;
+}
+
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #6c757d, #495057);
+  color: white !important;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+  align-self: flex-start;
+}
+
+.back-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+  color: white !important;
+}
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -418,6 +625,15 @@
   .new-contact-card,
   .edit-form-card {
     padding: 25px;
+  }
+
+   .primary-actions,
+  .new-contact-actions {
+    flex-direction: column;
+  }
+  
+  .edit-form-actions {
+    gap: 10px;
   }
 }
 

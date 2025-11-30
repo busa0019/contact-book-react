@@ -5,18 +5,18 @@ import { useParams, Link } from "react-router-dom";
 import '../App.css';
 
 export const Contact = () => {
-    //set up state variable for contact
+  
     const [contactInfo, setContactInfo] = useState({});
 
-    //id from the route parameters
+  
     const { id } = useParams();
 
-    //create a function to fetch a contact
+  
     const fetchContactInfoById = async (contactId) => {
         const docRef = doc(db, "contacts", contactId);
         const docSnapshot = await getDoc(docRef);
 
-        //Check if the document exists in firestore
+      
         if (docSnapshot.exists()) {
             setContactInfo({
                 id: docSnapshot.id,
@@ -29,12 +29,12 @@ export const Contact = () => {
     };
 
     useEffect(() => {
-        //Fetch the contact data when the component mounts
+     
         fetchContactInfoById(id);
     }, [id]);
 
     console.log(id);
-    //render the contact information
+  
     return (
 
         <div className="app-container">
