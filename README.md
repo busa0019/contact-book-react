@@ -40,7 +40,7 @@ A modern, full-featured contact management application built with React, React R
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/react-contact-manager.git
+git clone https://github.com/busa0019/contact-book-react.git
 cd react-contact-manager
 
 # Install dependencies
